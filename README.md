@@ -39,3 +39,6 @@ cd carrinho_de_compras
 
 # Instale as dependências
 npm install
+
+# Rode o projeto
+npm start
