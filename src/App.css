@@ -1,0 +1,479 @@
+:root {
+  --spfc-red: #CC0033;
+  --spfc-black: #000000;
+  --spfc-white: #FFFFFF;
+  --spfc-gray: #F5F5F5;
+  --spfc-dark-red: #990033;
+  --spfc-gold: #FFD700;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--spfc-black);
+  background-color: var(--spfc-gray);
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Header Estilo SPFC */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(to right, var(--spfc-black), var(--spfc-red));
+  color: var(--spfc-white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 100;
+}
+
+.app-header h1 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.app-header h1::before {
+  content: "⚽";
+  font-size: 1.5rem;
+}
+
+.app-main {
+  flex: 1;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Footer Estilo SPFC */
+.app-footer {
+  text-align: center;
+  padding: 1.5rem;
+  background: var(--spfc-black);
+  color: var(--spfc-white);
+  margin-top: 3rem;
+  font-size: 0.9rem;
+}
+
+.app-footer p {
+  margin: 0.5rem 0;
+}
+
+/* Lista de Produtos - Estilo SPFC */
+.product-list {
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  color: var(--spfc-red);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3px;
+  background: var(--spfc-red);
+}
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.product-card {
+  background: var(--spfc-white);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #e0e0e0;
+  position: relative;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(204, 0, 51, 0.2);
+}
+
+.product-image-placeholder {
+  height: 280px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image-placeholder img {
+  transform: scale(1.05);
+}
+
+.spfc-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--spfc-red);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.product-card h3 {
+  margin: 1rem 1rem 0.5rem;
+  color: var(--spfc-black);
+  font-size: 1.2rem;
+  min-height: 3rem;
+}
+
+.product-card p {
+  margin: 0 1rem 1rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.product-price {
+  display: block;
+  margin: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--spfc-red);
+}
+
+.add-to-cart-btn {
+  display: block;
+  width: calc(100% - 2rem);
+  margin: 0 1rem 1rem;
+  padding: 0.8rem;
+  background-color: var(--spfc-red);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--spfc-dark-red);
+  transform: translateY(-2px);
+}
+
+/* Carrinho - Estilo SPFC */
+.cart-summary {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cart-icon {
+  font-size: 1.8rem;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  background-color: var(--spfc-gold);
+  color: var(--spfc-black);
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.cart-page {
+  background: var(--spfc-white);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 3rem;
+  color: #777;
+}
+
+.empty-cart p:first-child {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--spfc-red);
+}
+
+.cart-items {
+  margin: 2rem 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.item-info {
+  flex: 2;
+}
+
+.item-info h4 {
+  color: var(--spfc-black);
+  margin-bottom: 0.5rem;
+}
+
+.item-quantity {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.item-quantity button {
+  background: var(--spfc-gray);
+  border: 1px solid #ddd;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--spfc-red);
+  font-weight: bold;
+}
+
+.item-quantity button:hover {
+  background-color: #e0e0e0;
+}
+
+.item-subtotal {
+  flex: 1;
+  text-align: right;
+  font-weight: bold;
+  color: var(--spfc-red);
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  color: var(--spfc-red);
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin-left: 1.5rem;
+  transition: color 0.2s;
+}
+
+.remove-btn:hover {
+  color: var(--spfc-dark-red);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  border-top: 2px solid #ddd;
+  margin-top: 1rem;
+}
+
+.cart-total h3 {
+  color: var(--spfc-black);
+  font-size: 1.5rem;
+}
+
+.checkout-btn {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(to right, var(--spfc-red), var(--spfc-dark-red));
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 10px rgba(204, 0, 51, 0.3);
+}
+
+.checkout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(204, 0, 51, 0.4);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .app-header {
+    flex-direction: column;
+    padding: 1rem;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .products-container {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+  
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .item-quantity, .item-subtotal {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-main {
+    padding: 1rem;
+  }
+  
+  .products-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .cart-total {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  
+  .checkout-btn {
+    width: 100%;
+  }
+}
+
+/* Efeitos Especiais SPFC */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.spfc-pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Seção de Uniformes */
+.uniformes-container {
+  max-width: 1000px;
+  margin: 3rem auto;
+  text-align: center;
+}
+
+.uniformes-container h2 {
+  color: var(--spfc-red);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.uniformes-container h2::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 150px;
+  height: 3px;
+  background: var(--spfc-red);
+}
+
+.uniformes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  justify-content: center;
+}
+
+.uniforme-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 2px solid var(--spfc-gray);
+}
+
+.uniforme-img:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(204, 0, 51, 0.2);
+  border-color: var(--spfc-red);
+}
+
+/* Adicione ao final do arquivo */
+.toast-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  background-color: #006437; /* Verde do SPFC */
+  color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out, fadeOut 0.5s ease-in 2.5s forwards;
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
